@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Médica Morvan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #E0B0FF; /* Cor de fundo roxo claro */
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+        }
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .consulta-box {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin: 20px auto;
+        }
+        .text-area {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            resize: none;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: red;
+            color: white;
+            font-size: 16px;
+            margin-top: 80px;
+            transition: background-color 0.3s;
+            margin-right: 5px; /* Espaçamento entre os botões */
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>Clínica Médica Morvan</h1>
+    <div id="pacienteTable">
+        <table id="pacientes">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Data da Consulta</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Os pacientes serão carregados aqui -->
+            </tbody>
+        </table>
+        <button class="btn" onclick="encerrarSessao()">Encerrar Sessão</button> <!-- Botão para encerrar a sessão -->
+    </div>
+
+    <div class="consulta-box" id="consultaBox">
+        <h2>Informações da Consulta</h2>
+        <p>Paciente: <span id="modalPatientName"></span></p>
+        <img id="modalPatientImage" src="" alt="Imagem do Paciente" style="width: 150px; height: 150px; border-radius: 75px;">
+        <p>Data da Consulta: <span id="modalPatientDate"></span></p>
+        <textarea class="text-area" id="anotacoes" placeholder="Digite suas anotações aqui..."></textarea>
+        <button class="btn" onclick="salvarAnotacoes()">Salvar Anotações</button>
+        <button class="btn" onclick="fecharConsulta()">Fechar Consulta</button>
+        <button class="btn" onclick="sair()">Sair</button>
+    </div>
+
+    <script>
+        const pacientes = [
+            { nome: "João Silva", data: "2024-09-01", img: "https://via.placeholder.com/150" },
+            { nome: "Maria Oliveira", data: "2024-09-02", img: "https://via.placeholder.com/150" },
+            { nome: "Pedro Santos", data: "2024-09-03", img: "https://via.placeholder.com/150" },
+        ];
+
+        function carregarPacientes() {
+            const pacienteTable = document.getElementById('pacientes').getElementsByTagName('tbody')[0];
+            pacientes.forEach((paciente, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${paciente.nome}</td>
+                    <td>${paciente.data}</td>
+                    <td>
+                        <button class="btn" onclick="abrirConsulta(${index})">Abrir Consulta</button>
+                    </td>
+                `;
+                pacienteTable.appendChild(row);
+            });
+        }
+
+        // Função para abrir a consulta
+        function abrirConsulta(index) {
+            const paciente = pacientes[index];
+            document.getElementById('modalPatientName').innerText = paciente.nome;
+            document.getElementById('modalPatientImage').src = paciente.img;
+            document.getElementById('modalPatientDate').innerText = paciente.data;
+
+            // Exibir apenas a consulta
+            document.getElementById('pacienteTable').style.display = "none";
+            document.getElementById('consultaBox').style.display = "block";
+        }
+
+        // Função para fechar a consulta
+        function fecharConsulta() {
+            document.getElementById('consultaBox').style.display = "none";
+            document.getElementById('pacienteTable').style.display = "block"; // Exibir a tabela novamente
+            document.getElementById('anotacoes').value = ""; // Limpa o campo de texto
+        }
+
+        // Função para sair e voltar para a home
+        function sair() {
+            document.getElementById('consultaBox').style.display = "none";
+            document.getElementById('pacienteTable').style.display = "block"; // Exibir a tabela novamente
+            document.getElementById('anotacoes').value = ""; // Limpa o campo de texto
+        }
+
+        // Função para salvar anotações
+        function salvarAnotacoes() {
+            const anotacoes = document.getElementById('anotacoes').value;
+            console.log("Anotações Salvas:", anotacoes);
+            alert("Anotações salvas com sucesso!");
+            fecharConsulta();
+        }
+
+        // Função para encerrar a sessão
+        function encerrarSessao() {
+            const confirmacao = confirm("Você tem certeza que deseja encerrar a sessão?");
+            if (confirmacao) {
+                // Redirecionar para a página inicial do projeto
+                window.location.href = 'home/'; // Altere para a URL da sua página inicial
+
+            }
+        }
+
+        // Carregar pacientes ao iniciar a página
+        carregarPacientes();
+    </script>
+
+    <footer>
+        &copy; 2024 Clínica Médica Morvan
+    </footer>
+</body>
+</html>

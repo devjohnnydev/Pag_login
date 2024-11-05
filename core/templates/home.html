@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Médica - Home</title>
+    <!-- Estilos CSS internos para formatar a aparência da página -->
+    <style>
+        /* Define fonte padrão e cor de fundo para todo o corpo da página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilos para o cabeçalho da página */
+        .header {
+            background-color: #28a745;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Formatação para o título principal */
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        /* Formatação para o subtítulo */
+        .header p {
+            margin: 5px 0;
+            font-size: 18px;
+        }
+
+        /* Botão de logout com posicionamento absoluto */
+        .header .logout-button {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Efeito hover para o botão de logout */
+        .header .logout-button:hover {
+            background-color: #555;
+        }
+
+        /* Barra de navegação com links */
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        /* Estilos para os links da barra de navegação */
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        /* Efeito hover para os links da barra de navegação */
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Container para o carrossel de imagens */
+        .carousel-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Flex container para as imagens do carrossel */
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Estilos para as imagens do carrossel */
+        .carousel img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Botões de controle do carrossel */
+        .carousel-buttons {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Estilos para os botões de controle */
+        .carousel-buttons button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+
+        /* Efeito hover para os botões do carrossel */
+        .carousel-buttons button:hover {
+            background-color: #218838;
+        }
+
+        /* Estilos para a seção de boas-vindas */
+        .container {
+            padding: 20px;
+        }
+
+        /* Estilos para a seção de boas-vindas */
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* Estilos para o título da seção de boas-vindas */
+        .welcome-section h2 {
+            font-size: 28px;
+            color: #333;
+        }
+
+        /* Estilos para o texto da seção de boas-vindas */
+        .welcome-section p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        /* Container flexível para os cards de serviços */
+        .services {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        /* Estilos para os cards de serviços */
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            margin: 10px;
+        }
+
+        /* Estilos para as imagens dos cards de serviços */
+        .service-card img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para os títulos dos cards de serviços */
+        .service-card h3 {
+            font-size: 22px;
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        /* Estilos para os textos dos cards de serviços */
+        .service-card p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Estilos para o rodapé */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* Estilos para o texto do rodapé */
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cabeçalho com título, subtítulo e botão de logout -->
+    <div class="header">
+        <h1>Clínica Médica Vida Saudável</h1>
+        <p>Seu bem-estar é nossa prioridade</p>
+        <button class="logout-button" onclick="window.location.href='/accounts/logout/'">Encerrar Sessão</button>
+    </div>
+
+    <!-- Barra de navegação com links para diferentes seções do site -->
+    <div class="navbar">
+        <a href="/home/" class="button">Home</a>
+        <a href="#">Serviços</a>
+        <a href="#">Sobre Nós</a>
+        <a href="#">Contato</a>
+        <a href="/accounts/login/" class="button">Login</a>
+    </div>
+
+    <!-- Seção de carrossel de imagens -->
+    <div class="carousel-container">
+        <div class="carousel" id="carousel">
+            <img src="https://via.placeholder.com/1000x400" alt="Slide 1">
+            <img src="https://via.placeholder.com/1000x400" alt="Slide 2">
+            <img src="https://via.placeholder.com/1000x400" alt="Slide 3">
+        </div>
+    </div>
+
+    <!-- Botões para controle do carrossel -->
+    <div class="carousel-buttons">
+        <button onclick="prevSlide()">&#10094; Anterior</button>
+        <button onclick="nextSlide()">Próximo &#10095;</button>
+    </div>
+
+    <!-- Seção de boas-vindas com descrição dos serviços -->
+    <div class="container">
+        <div class="welcome-section">
+            <h2>Bem-vindo à Clínica Médica Vida Saudável</h2>
+            <p>Oferecemos serviços de saúde de alta qualidade para você e sua família.</p>
+        </div>
+
+        <!-- Cards de serviços oferecidos pela clínica -->
+        <div class="services">
+            <div class="service-card">
+                <img src="https://via.placeholder.com/100" alt="Consulta Geral">
+                <h3>Consulta Geral</h3>
+                <p>Atendimento médico especializado em clínica geral para todas as idades.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://via.placeholder.com/100" alt="Pediatria">
+                <h3>Pediatria</h3>
+                <p>Cuidado e atenção especial para a saúde dos seus filhos.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://via.placeholder.com/100" alt="Cardiologia">
+                <h3>Cardiologia</h3>
+                <p>Monitoramento e tratamento especializado para o seu coração.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé com direitos autorais -->
+    <div class="footer">
+        <p>&copy; 2024 Clínica Médica Vida Saudável - Todos os direitos reservados.</p>
+    </div>
+
+    <!-- JavaScript para funcionalidade do carrossel -->
+    <script>
+        // Define a imagem inicial do carrossel
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('#carousel img');
+
+        // Função para exibir o slide atual
+        function showSlide(index) {
+            const totalSlides = slides.length;
+            if (index >= totalSlides) currentSlide = 0;
+            if (index < 0) currentSlide = totalSlides - 1;
+            const offset = -currentSlide * 1000; // 1000px é a largura da imagem
+            document.getElementById('carousel').style.transform = `translateX(${offset}px)`;
+        }
+
+        // Função para avançar para o próximo slide
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        // Função para voltar ao slide anterior
+        function prevSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        // Configura o carrossel para mudar automaticamente de slide a cada 5 segundos
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+
+</html>

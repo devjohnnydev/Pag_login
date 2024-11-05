@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página do Paciente</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e3f2fd;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header */
+        .header {
+            background-color: #1565c0;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header img {
+            border-radius: 50%;
+            height: 80px;
+            width: 80px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1565c0;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .container {
+            margin-top: 20px;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        button {
+            background-color: #1565c0;
+            color: white;
+        }
+
+        .list-group-item {
+            background-color: #f1f8e9;
+            color: #1565c0;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Bem-vindo, [Nome do Paciente]</h1>
+        <img src="https://via.placeholder.com/80" alt="Foto do Paciente">
+    </div>
+
+    <!-- Container -->
+    <div class="container">
+        <h2>Agendamento de Consultas</h2>
+        <form id="agendarConsultaForm">
+            <div class="form-group">
+                <label for="data">Data da Consulta:</label>
+                <input type="date" class="form-control" id="data" required>
+            </div>
+            <div class="form-group">
+                <label for="hora">Hora da Consulta:</label>
+                <input type="time" class="form-control" id="hora" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Agendar Consulta</button>
+        </form>
+
+        <button class="btn btn-secondary mt-4" id="verConsultasBtn">Ver Consultas Agendadas</button>
+
+        <div id="consultasAgendadas" class="mt-4" style="display:none;">
+            <h3>Consultas Agendadas</h3>
+            <ul id="listaConsultas" class="list-group"></ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 Clínica Médica Morvan</p>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const form = document.getElementById('agendarConsultaForm');
+        const listaConsultas = document.getElementById('listaConsultas');
+        const consultasAgendadas = document.getElementById('consultasAgendadas');
+        const verConsultasBtn = document.getElementById('verConsultasBtn');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio do formulário
+
+            const data = document.getElementById('data').value;
+            const hora = document.getElementById('hora').value;
+
+            // Adiciona a nova consulta à lista
+            const li = document.createElement('li');
+            li.className = 'list-group-item';
+            li.textContent = `Consulta agendada para ${data} às ${hora}`;
+            listaConsultas.appendChild(li);
+
+            // Limpa os campos do formulário
+            form.reset();
+        });
+
+        verConsultasBtn.addEventListener('click', function() {
+            consultasAgendadas.style.display = 'block'; // Mostra a seção de consultas agendadas
+            consultasAgendadas.scrollIntoView({ behavior: 'smooth' }); // Rola a página para a seção
+        });
+    </script>
+
+</body>
+</html>
